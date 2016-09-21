@@ -8,9 +8,9 @@ services:
       - "443:443"
     volumes:
       - "/etc/nginx/conf.d"
-      - "/etc/nginx/vhost.d"
+#      - "/etc/nginx/vhost.d"
       - "/etc/nginx/passwords:/etc/nginx/htpasswd"
-      - "/usr/share/nginx/html"
+#      - "/usr/share/nginx/html"
 #      - "/home/preprod/.zol/nginx/certs:/etc/nginx/certs:ro"
       - "~/.zol/nginx/certs:/etc/nginx/certs:ro"
       - "./conf/proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
@@ -27,13 +27,6 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./conf/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl
-    networks:
-      - nginx-proxy
-
-  whoami:
-    image: jwilder/whoami
-    environment:
-      - VIRTUAL_HOST=whoami.dev.zol.fr
     networks:
       - nginx-proxy
 
