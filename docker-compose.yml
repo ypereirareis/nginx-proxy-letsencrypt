@@ -1,12 +1,13 @@
 version: '2'
 services:
   michel-nginx:
-    image: nginx
+    image: jwilder/nginx-proxy
     container_name: michel
     ports:
       - "80:80"
       - "443:443"
     volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
       - "/etc/nginx/conf.d"
 #      - "/etc/nginx/vhost.d"
       - "/etc/nginx/passwords:/etc/nginx/htpasswd"
@@ -18,17 +19,6 @@ services:
     networks:
       - nginx-proxy
 
-  michel-dockergen:
-    image: jwilder/docker-gen
-    container_name: michel-dockergen
-    command: -notify-sighup michel -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
-    volumes_from:
-      - michel-nginx
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./conf/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl
-    networks:
-      - nginx-proxy
 
 #  michel-letsencrypt:
 #    image: jrcs/letsencrypt-nginx-proxy-companion
