@@ -3,7 +3,7 @@ services:
   michel-nginx:
     extends:
         file: docker-compose.yml
-        service: web
+        service: michel-nginx
     volumes:
       - "/etc/nginx/passwords:/etc/nginx/htpasswd"
       - "/home/preprod/.zol/nginx/certs:/etc/nginx/certs:ro"
