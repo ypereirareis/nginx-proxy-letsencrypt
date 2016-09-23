@@ -3,6 +3,7 @@ services:
   michel-nginx:
     image: jwilder/nginx-proxy
     container_name: michel
+    restart: always
     ports:
       - "80:80"
       - "443:443"
@@ -10,25 +11,23 @@ services:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
       - "/etc/nginx/conf.d"
       - "/etc/nginx/vhost.d"
-      - "/etc/nginx/passwords:/etc/nginx/htpasswd"
       - "/usr/share/nginx/html"
-#      - "/home/preprod/.zol/nginx/certs:/etc/nginx/certs:ro"
-      - "~/.zol/nginx/certs:/etc/nginx/certs:ro"
       - "./conf/proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
-#      - "/srv/projects/fortrainjobs-front/fortrainjobs.conf:/etc/nginx/conf.d/fortrainjobs.conf:ro"
     networks:
       - nginx-proxy
 
   michel-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
     container_name: michel-letsencrypt
     volumes_from:
       - michel-nginx
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "/home/preprod/.zol/nginx/certs:/etc/nginx/certs:rw"
     networks:
       - nginx-proxy
+#    environment:
+#     - ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory
 
 networks:
   nginx-proxy:

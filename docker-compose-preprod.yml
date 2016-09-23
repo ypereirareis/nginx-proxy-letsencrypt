@@ -1,0 +1,26 @@
+version: '2'
+services:
+  michel-nginx:
+    extends:
+        file: docker-compose.yml
+        service: web
+    volumes:
+      - "/etc/nginx/passwords:/etc/nginx/htpasswd"
+      - "/home/preprod/.zol/nginx/certs:/etc/nginx/certs:ro"
+      - "/srv/projects/fortrainjobs-front/fortrainjobs.conf:/etc/nginx/conf.d/fortrainjobs.conf:ro"
+    networks:
+      - nginx-proxy
+
+  michel-letsencrypt:
+    extends:
+        file: docker-compose.yml
+        service: michel-letsencrypt
+    volumes:
+      - "/home/preprod/.zol/nginx/certs:/etc/nginx/certs:rw"
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy
