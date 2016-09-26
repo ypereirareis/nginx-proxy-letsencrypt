@@ -13,6 +13,9 @@ services:
       - "/etc/nginx/vhost.d"
       - "/usr/share/nginx/html"
       - "./conf/proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
+#      - "PATH_TO_PASSWORDS:/etc/nginx/htpasswd"
+#      - "PATH_TO_CERTS/certs:/etc/nginx/certs:ro"
+#      - "PATH_TO_CUSTOM_CONFIG:/etc/nginx/conf.d/custom.conf:ro"
     networks:
       - nginx-proxy
 
@@ -20,8 +23,11 @@ services:
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: always
     container_name: michel-letsencrypt
+    volumes_from:
+      - michel-nginx
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "PATH_TO_CERTS/certs:/etc/nginx/certs:rw"
     networks:
       - nginx-proxy
 #    environment:

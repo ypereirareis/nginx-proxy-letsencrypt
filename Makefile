@@ -1,4 +1,4 @@
-composer=docker-compose -f docker-compose-$(PROJECT_ENV).yml
+composer=docker-compose
 
 start: remove
 	@$(composer) up -d
