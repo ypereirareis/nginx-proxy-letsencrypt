@@ -8,9 +8,9 @@ A configuration to generate and renew your certificates automatically with ets E
 
 You need **docker 1.12+** and **docker-compose 1.8+ (v2)**
 
-Reverse proxy container name => **michel**
-Reverse proxy network name => **nginx-proxy**
-Starting the stack => `make install`
+* Reverse proxy container name => **michel**
+* Reverse proxy network name => **nginx-proxy**
+* Starting the stack => `make install`
 
 The reverse proxy is connected to the default bridge network thanks to the Makefile.
 
