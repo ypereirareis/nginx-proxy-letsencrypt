@@ -78,7 +78,8 @@ Configuration based on those repositories:
 * [https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion)
 * [https://github.com/fatk/docker-letsencrypt-nginx-proxy-companion-examples](https://github.com/fatk/docker-letsencrypt-nginx-proxy-companion-examples)
 
-I advise you to read the documentation of those repositories.
+I advise you to read the documentation of those repositories...
+and [this section in particular](https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion#lets-encrypt).
 
 ### Volumes
 
