@@ -96,8 +96,8 @@ The "letsencrypts" docker container generates a file into this volume.
 The file is accessed by [https://letsencrypt.org/](https://letsencrypt.org/) during the domain validation process.
 
 
-**PATH_TO_PASSWORDS:/etc/nginx/htpasswd**
-**PATH_TO_CERTS/certs:/etc/nginx/certs:ro**
-**PATH_TO_CUSTOM_CONFIG:/etc/nginx/conf.d/custom.conf:ro**
+**PATH_TO_PASSWORDS:/etc/nginx/htpasswd**  
+**PATH_TO_CERTS/certs:/etc/nginx/certs:ro**  
+**PATH_TO_CUSTOM_CONFIG:/etc/nginx/conf.d/custom.conf:ro**  
 
 THose three volumes are here to add custom configuration, see [https://github.com/jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy)
