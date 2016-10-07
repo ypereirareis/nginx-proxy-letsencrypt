@@ -3,6 +3,7 @@ set -e
 
 
 function start() {
+  docker network create nginx-proxy || true
   make install
 }
 
