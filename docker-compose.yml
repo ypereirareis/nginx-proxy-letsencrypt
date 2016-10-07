@@ -27,7 +27,8 @@ services:
       - michel-nginx
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "PATH_TO_CERTS/certs:/etc/nginx/certs:rw"
+      - "./conf/nginx_location.conf:/app/nginx_location.conf"
+#      - "PATH_TO_CERTS/certs:/etc/nginx/certs:rw"
     networks:
       - nginx-proxy
 #    environment:
