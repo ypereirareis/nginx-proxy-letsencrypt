@@ -34,7 +34,21 @@ services:
 #    environment:
 #     - ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory
 
+  michel-fail2ban:
+    build: ./docker/fail2ban
+    restart: always
+    container_name: michel-fail2ban
+    privileged: true
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./logs:/var/log/nginx"
+    links:
+      - michel-nginx
+
+
 networks:
   nginx-proxy:
     external:
       name: nginx-proxy
+
+
