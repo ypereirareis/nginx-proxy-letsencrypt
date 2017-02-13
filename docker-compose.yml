@@ -9,13 +9,13 @@ services:
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
-      - "/etc/nginx/conf.d"
-      - "/etc/nginx/vhost.d"
+      - "./conf.d:/etc/nginx/conf.d"
+      - "./vhost.d:/etc/nginx/vhost.d"
       - "/usr/share/nginx/html"
       - "./conf/proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
-#      - "PATH_TO_PASSWORDS:/etc/nginx/htpasswd"
-#      - "PATH_TO_CERTS/certs:/etc/nginx/certs:ro"
-#      - "PATH_TO_CUSTOM_CONFIG:/etc/nginx/conf.d/custom.conf:ro"
+      - "./htpasswd:/etc/nginx/htpasswd"
+      - "./certs:/etc/nginx/certs:ro"
+
     networks:
       - nginx-proxy
 
@@ -28,11 +28,10 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./conf/nginx_location.conf:/app/nginx_location.conf"
-#      - "PATH_TO_CERTS/certs:/etc/nginx/certs:rw"
+      - "./certs:/etc/nginx/certs:rw"
     networks:
       - nginx-proxy
-#    environment:
-#     - ACME_CA_URI=https://acme-staging.api.letsencrypt.org/directory
+
 
   michel-fail2ban:
     build: ./docker/fail2ban
